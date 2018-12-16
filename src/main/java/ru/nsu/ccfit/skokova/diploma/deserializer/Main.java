@@ -1,15 +1,14 @@
-package ru.nsu.ccfit.skokova.diploma;
+package ru.nsu.ccfit.skokova.diploma.deserializer;
 
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import ru.nsu.ccfit.skokova.diploma.precedent.CasesBase;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +20,7 @@ public class Main {
         }
     }
 
-    private void readCases() throws IOException {
+    public CasesBase readCases() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
@@ -32,11 +31,29 @@ public class Main {
         objectMapper.registerModule(simpleModule);
 
         File file = new File("result.json");
-        //InputStream inputStream = getClass().getResourceAsStream("result.json");
         CasesBase casesBase = objectMapper.readValue(file, CasesBase.class);
 
         System.out.println("Unique cases: " + casesBase.size());
         System.out.println("Cases total: " + casesBase.allCasesCount());
         System.out.println("Cases: " + Arrays.toString(casesBase.getUniqueCasesWithCounter().entrySet().toArray()));
+
+        int sum = casesBase.getUniqueCasesWithCounter()
+                .entrySet()
+                .stream()
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+
+        System.out.println("Sum = " + sum);
+
+        int max = casesBase.getUniqueCasesWithCounter()
+                .entrySet()
+                .stream()
+                .mapToInt(Map.Entry::getValue)
+                .max()
+                .getAsInt();
+
+        System.out.println("Max = " + max);
+
+        return casesBase;
     }
 }

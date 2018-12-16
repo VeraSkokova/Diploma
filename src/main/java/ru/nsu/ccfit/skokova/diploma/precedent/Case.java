@@ -1,8 +1,10 @@
-package ru.nsu.ccfit.skokova.diploma;
+package ru.nsu.ccfit.skokova.diploma.precedent;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -32,7 +34,7 @@ public class Case {
 
     private String vulnerability;
 
-    private String vountermeasres;
+    private String vountermeasures;
 
     public Case() {
     }
@@ -101,12 +103,21 @@ public class Case {
         this.vulnerability = vulnerability;
     }
 
-    public String getVountermeasres() {
-        return vountermeasres;
+    public String getVountermeasures() {
+        return vountermeasures;
     }
 
-    public void setVountermeasres(String vountermeasres) {
-        this.vountermeasres = vountermeasres;
+    public void setVountermeasures(String vountermeasures) {
+        this.vountermeasures = vountermeasures;
+    }
+
+    public List<Integer> toList() {
+        List<Integer> clustersSet = new ArrayList<>();
+        clustersSet.add(consequenceClusterId);
+        clustersSet.add(lossesClusterId);
+        clustersSet.add(symptomClusterId);
+
+        return clustersSet;
     }
 
     @Override
@@ -122,5 +133,14 @@ public class Case {
     @Override
     public int hashCode() {
         return Objects.hash(consequenceClusterId, lossesClusterId, symptomClusterId);
+    }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+                "consequenceClusterId=" + consequenceClusterId +
+                ", lossesClusterId=" + lossesClusterId +
+                ", symptomClusterId=" + symptomClusterId +
+                "}\n";
     }
 }

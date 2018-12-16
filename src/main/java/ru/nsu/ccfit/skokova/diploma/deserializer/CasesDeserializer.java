@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.skokova.diploma;
+package ru.nsu.ccfit.skokova.diploma.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import ru.nsu.ccfit.skokova.diploma.precedent.Case;
+import ru.nsu.ccfit.skokova.diploma.precedent.CasesBase;
 
 import java.io.IOException;
 

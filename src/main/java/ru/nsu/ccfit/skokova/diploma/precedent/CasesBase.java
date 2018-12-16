@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.skokova.diploma;
+package ru.nsu.ccfit.skokova.diploma.precedent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +16,10 @@ public class CasesBase {
 
     public Map<Case, Integer> getUniqueCasesWithCounter() {
         return uniqueCasesWithCounter;
+    }
+
+    public List<Case> getAllCases() {
+        return allCases;
     }
 
     public void addCase(Case precedent) {
