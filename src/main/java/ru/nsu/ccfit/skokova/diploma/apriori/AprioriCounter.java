@@ -13,7 +13,16 @@ public class AprioriCounter {
     public void printSupports() {
         for (Case precedent : casesBase.getUniqueCasesWithCounter().keySet()) {
             double support = 1.0 * casesBase.getUniqueCasesWithCounter().get(precedent) / casesBase.allCasesCount();
-            System.out.println(precedent + " " + support);
+
+            double consequenceSupport = 1.0 * casesBase.getConsequencesWithCounter()
+                    .get(precedent.getCaseClusters().getConsequence()) / casesBase.allCasesCount();
+            double confidence = support / consequenceSupport;
+
+            double premiseSupport = 1.0 * casesBase.getPremisesWithCounter()
+                    .get(precedent.getCaseClusters().getPremise()) / casesBase.allCasesCount();
+            double lift = support / (premiseSupport * consequenceSupport);
+
+            System.out.println(precedent + " " + support + " " + confidence + " " + lift);
         }
     }
 }

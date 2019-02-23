@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.nsu.ccfit.skokova.diploma.controller.LossSceneController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox fx:id="box">
+        <Label text="Введите описание потерь">
+            <VBox.margin>
+                <Insets>
+                    <top>10</top>
+                    <bottom>10</bottom>
+                </Insets>
+            </VBox.margin>
+        </Label>
+        <TextArea fx:id="input" prefHeight="75" prefWidth="190" scrollTop="Infinity" scrollLeft="-Infinity" text="fsf">
+            <VBox.margin>
+                <Insets>
+                    <top>20</top>
+                    <left>10</left>
+                    <right>10</right>
+                </Insets>
+            </VBox.margin>
+        </TextArea>
+        <Button fx:id="submit" text="OK" onAction="#goNext">
+            <VBox.margin>
+                <Insets>
+                    <top>20</top>
+                    <left>10</left>
+                    <right>10</right>
+                </Insets>
+            </VBox.margin>
+        </Button>
+
+    </VBox>
+
+</AnchorPane>

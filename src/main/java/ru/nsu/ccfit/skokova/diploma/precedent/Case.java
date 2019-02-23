@@ -13,28 +13,34 @@ public class Case {
 
     private String consequence;
     @JsonProperty("consequence_cluster_id")
-    private int consequenceClusterId;
+    private int consequenceClusterId = -1;
     //@JsonIgnore
     @JsonProperty("consequence_mean_vector")
     private double[] consequenceMeanVector;
 
     private String losses;
     @JsonProperty("losses_cluster_id")
-    private int lossesClusterId;
+    private int lossesClusterId = -1;
     //@JsonIgnore
     @JsonProperty("losses_mean_vector")
     private double[] lossesMeanVector;
 
     private String symptom;
     @JsonProperty("symptom_cluster_id")
-    private int symptomClusterId;
+    private int symptomClusterId = -1;
     //@JsonIgnore
     @JsonProperty("symptom_mean_vector")
     private double[] symptomMeanVector;
 
     private String vulnerability;
+    @JsonProperty("vulnerabilitiy_cluster_id")
+    private int vulnerabilityClusterId = -1;
 
     private String vountermeasures;
+    @JsonProperty("vountermeasures_cluster_id")
+    private int vountermeasuresClusterId = -1;
+
+    private CaseClusters caseClusters;
 
     public Case() {
     }
@@ -111,6 +117,30 @@ public class Case {
         this.vountermeasures = vountermeasures;
     }
 
+    public int getVulnerabilityClusterId() {
+        return vulnerabilityClusterId;
+    }
+
+    public void setVulnerabilityClusterId(int vulnerabilityClusterId) {
+        this.vulnerabilityClusterId = vulnerabilityClusterId;
+    }
+
+    public int getVountermeasuresClusterId() {
+        return vountermeasuresClusterId;
+    }
+
+    public void setVountermeasuresClusterId(int vountermeasuresClusterId) {
+        this.vountermeasuresClusterId = vountermeasuresClusterId;
+    }
+
+    public CaseClusters getCaseClusters() {
+        return caseClusters;
+    }
+
+    public void setCaseClusters(CaseClusters caseClusters) {
+        this.caseClusters = caseClusters;
+    }
+
     public List<Integer> toList() {
         List<Integer> clustersSet = new ArrayList<>();
         clustersSet.add(consequenceClusterId);
@@ -127,12 +157,14 @@ public class Case {
         Case aCase = (Case) o;
         return consequenceClusterId == aCase.consequenceClusterId &&
                 lossesClusterId == aCase.lossesClusterId &&
-                symptomClusterId == aCase.symptomClusterId;
+                symptomClusterId == aCase.symptomClusterId &&
+                vulnerabilityClusterId == aCase.vulnerabilityClusterId &&
+                vountermeasuresClusterId == aCase.vountermeasuresClusterId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(consequenceClusterId, lossesClusterId, symptomClusterId);
+        return Objects.hash(consequenceClusterId, lossesClusterId, symptomClusterId, vulnerabilityClusterId, vountermeasuresClusterId);
     }
 
     @Override
@@ -141,6 +173,8 @@ public class Case {
                 "consequenceClusterId=" + consequenceClusterId +
                 ", lossesClusterId=" + lossesClusterId +
                 ", symptomClusterId=" + symptomClusterId +
-                "}\n";
+                ", vulnerabilityClusterId=" + vulnerabilityClusterId +
+                ", vountermeasuresClusterId=" + vountermeasuresClusterId +
+                '}';
     }
 }
