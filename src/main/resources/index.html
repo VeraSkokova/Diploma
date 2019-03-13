@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="app">
+    <v-app id="inspire">
+        <div>
+            <v-stepper non-linear>
+                <v-stepper-header>
+                    <v-stepper-step
+                            editable
+                            step="1"
+                    >
+                        Симптомы
+                    </v-stepper-step>
+
+                    <v-divider></v-divider>
+
+                    <v-stepper-step
+                            editable
+                            step="2"
+                    >
+                        Потери
+                    </v-stepper-step>
+
+                    <v-divider></v-divider>
+
+                    <v-stepper-step
+                            step="3"
+                            editable
+                    >
+                        Уязвимости
+                    </v-stepper-step>
+
+                    <v-divider></v-divider>
+
+                    <v-stepper-step
+                            step="4"
+                            editable
+                    >
+                        Итого
+                    </v-stepper-step>
+                </v-stepper-header>
+
+                <v-stepper-content step="1">
+                    <v-form ref="form">
+                        <v-text-field
+                                v-model="model"
+                                :counter="max"
+                                :rules="rules"
+                                label="Симтомы атаки"
+                        ></v-text-field>
+                    </v-form>
+                </v-stepper-content>
+                <v-stepper-content step="2">
+                    <v-form ref="form">
+                        <v-text-field
+                                v-model="model2"
+                                :counter="max"
+                                :rules="rules"
+                                label="Потери"
+                        ></v-text-field>
+                    </v-form>
+                </v-stepper-content>
+                <v-stepper-content step="3">
+                    <v-form ref="form">
+                        <v-text-field
+                                v-model="model8"
+                                :counter="max"
+                                :rules="rules"
+                                label="Уязвимости"
+                        ></v-text-field>
+                    </v-form>
+                </v-stepper-content>
+                <v-stepper-content step="4">
+                    <v-list
+                            subheader
+                            three-line
+                    >
+                        <v-subheader>Прецедент</v-subheader>
+
+                        <v-list-tile>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Симптомы</v-list-tile-title>
+                                <v-list-tile-sub-title>{{ this.model }}</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+                        <v-list-tile>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Потери</v-list-tile-title>
+                                <v-list-tile-sub-title>{{ this.model2 }}</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+                        <v-list-tile>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Уязвимости</v-list-tile-title>
+                                <v-list-tile-sub-title>{{ this.model8 }}</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </v-list>
+
+                    <v-btn color="primary" @click="submit">Подтвердить</v-btn>
+                </v-stepper-content>
+            </v-stepper>
+        </div>
+    </v-app>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: () => ({
+            allowSpaces: false,
+            match: 'Foobar',
+            max: 75,
+            model: 'http',
+            model2: 'http',
+            model8: 'http'
+          }),
+
+        computed: {
+            rules () {
+              const rules = []
+
+              if (this.max) {
+                const rule =
+                  v => (v || '').length <= this.max ||
+                    `A maximum of ${this.max} characters is allowed`
+
+                rules.push(rule)
+              }
+
+              return rules
+            }
+        },
+
+        methods: {
+            submit() {
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('POST', 'http://127.0.0.1:4569/mostSimilar', true);
+                xhr.setRequestHeader('Cross-Origin', 'anonymous');
+
+                xhr.send('{"symptomString":"'
+                        + this.model
+                        + '","lossString":"'
+                        + this.model2
+                        + '","vulnerabilityString":"'
+                        + this.model8
+                        + '"}');
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.status != 200) {
+                      alert( xhr.status + ': ' + xhr.statusText );
+                    } else {
+                      alert( xhr.responseText );
+                    }
+                };
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>

@@ -3,8 +3,11 @@ package ru.nsu.ccfit.skokova.diploma.precedent;
 import java.util.Objects;
 
 public class Consequence {
-    private final int consequenceClusterId;
-    private final int vountermeasuresClusterId;
+    private int consequenceClusterId;
+    private int vountermeasuresClusterId;
+
+    public Consequence() {
+    }
 
     public Consequence(int consequenceClusterId, int vountermeasuresClusterId) {
         this.consequenceClusterId = consequenceClusterId;
@@ -17,6 +20,14 @@ public class Consequence {
 
     public int getVountermeasuresClusterId() {
         return vountermeasuresClusterId;
+    }
+
+    public void setConsequenceClusterId(int consequenceClusterId) {
+        this.consequenceClusterId = consequenceClusterId;
+    }
+
+    public void setVountermeasuresClusterId(int vountermeasuresClusterId) {
+        this.vountermeasuresClusterId = vountermeasuresClusterId;
     }
 
     @Override

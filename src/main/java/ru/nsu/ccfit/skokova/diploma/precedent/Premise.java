@@ -3,9 +3,12 @@ package ru.nsu.ccfit.skokova.diploma.precedent;
 import java.util.Objects;
 
 public class Premise {
-    private final int lossesClusterId;
-    private final int symptomClusterId;
-    private final int vulnerabilityClusterId;
+    private int lossesClusterId;
+    private int symptomClusterId;
+    private int vulnerabilityClusterId;
+
+    public Premise() {
+    }
 
     public Premise(int lossesClusterId, int symptomClusterId, int vulnerabilityClusterId) {
         this.lossesClusterId = lossesClusterId;
@@ -23,6 +26,18 @@ public class Premise {
 
     public int getVulnerabilityClusterId() {
         return vulnerabilityClusterId;
+    }
+
+    public void setLossesClusterId(int lossesClusterId) {
+        this.lossesClusterId = lossesClusterId;
+    }
+
+    public void setSymptomClusterId(int symptomClusterId) {
+        this.symptomClusterId = symptomClusterId;
+    }
+
+    public void setVulnerabilityClusterId(int vulnerabilityClusterId) {
+        this.vulnerabilityClusterId = vulnerabilityClusterId;
     }
 
     @Override

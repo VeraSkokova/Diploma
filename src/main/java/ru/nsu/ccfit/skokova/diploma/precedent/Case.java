@@ -41,6 +41,7 @@ public class Case {
     private int vountermeasuresClusterId = -1;
 
     private CaseClusters caseClusters;
+    private AprioriValues aprioriValues;
 
     public Case() {
     }
@@ -139,6 +140,14 @@ public class Case {
 
     public void setCaseClusters(CaseClusters caseClusters) {
         this.caseClusters = caseClusters;
+    }
+
+    public AprioriValues getAprioriValues() {
+        return aprioriValues;
+    }
+
+    public void setAprioriValues(AprioriValues aprioriValues) {
+        this.aprioriValues = aprioriValues;
     }
 
     public List<Integer> toList() {

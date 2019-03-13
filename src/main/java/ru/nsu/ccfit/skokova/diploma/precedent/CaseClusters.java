@@ -3,8 +3,11 @@ package ru.nsu.ccfit.skokova.diploma.precedent;
 import java.util.Objects;
 
 public class CaseClusters {
-    private final Premise premise;
-    private final Consequence consequence;
+    private Premise premise;
+    private Consequence consequence;
+
+    public CaseClusters() {
+    }
 
     public CaseClusters(Premise premise, Consequence consequence) {
         this.premise = premise;
@@ -17,6 +20,14 @@ public class CaseClusters {
 
     public Consequence getConsequence() {
         return consequence;
+    }
+
+    public void setPremise(Premise premise) {
+        this.premise = premise;
+    }
+
+    public void setConsequence(Consequence consequence) {
+        this.consequence = consequence;
     }
 
     @Override

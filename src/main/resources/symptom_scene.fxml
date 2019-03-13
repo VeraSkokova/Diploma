@@ -27,6 +27,7 @@
                 </Insets>
             </VBox.margin>
         </TextArea>
+
         <Button fx:id="submit" text="OK" onAction="#goNext">
             <VBox.margin>
                 <Insets>
